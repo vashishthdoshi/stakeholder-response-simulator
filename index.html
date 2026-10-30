@@ -33,15 +33,15 @@ p{margin:6px 0}
 .tab{background:transparent;color:var(--muted);border:0;border-bottom:3px solid transparent;border-radius:0;padding:10px 6px;margin-right:14px;font-weight:600;cursor:pointer;font:inherit}
 .tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
 .grid2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
-.grid-run{display:grid;grid-template-columns:minmax(0,400px) minmax(0,1fr);gap:16px}
+.grid-run{display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:16px}
 @media (max-width:900px){.grid2,.grid-run{grid-template-columns:1fr}}
 .panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:16px}
-.note{padding:10px 14px;border-radius:var(--radius);background:var(--warn-bg);font-size:13.5px;border:1px solid var(--line);margin-bottom:16px}
 .steps{counter-reset:s;list-style:none;padding:0;margin:8px 0}
 .steps li{counter-increment:s;position:relative;padding-left:34px;margin:10px 0}
 .steps li::before{content:counter(s);position:absolute;left:0;top:0;width:24px;height:24px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center}
 label{display:block;font-size:13px;font-weight:600;margin:12px 0 4px}
 .hint{font-size:12.5px;color:var(--muted);margin:2px 0 6px}
+.hint.warn{color:var(--warn);font-weight:600}
 input[type=text],input[type=password],input[type=number],textarea{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit;font-size:14px}
 textarea{min-height:90px;resize:vertical}
 textarea.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12.5px;min-height:130px}
@@ -52,9 +52,10 @@ textarea.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;f
 button{font:inherit;border:0;border-radius:8px;padding:10px 16px;cursor:pointer;background:var(--accent);color:var(--accent-ink);font-weight:600}
 button.ghost{background:transparent;color:var(--accent);border:1px solid var(--line)}
 button:disabled{opacity:.5;cursor:default}
-.persona{border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin:6px 0}
+.personas{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:8px}
+.persona{border:1px solid var(--line);border-radius:8px;padding:8px 10px}
 .persona summary{cursor:pointer;font-weight:600}
-.persona textarea{min-height:60px}
+.persona textarea{min-height:70px}
 #status{font-size:13px;color:var(--muted);margin-top:10px;min-height:20px}
 .chip{display:inline-block;font-size:12px;padding:3px 9px;border-radius:999px;background:var(--info-bg);margin:2px 4px 2px 0}
 .chip.ok{color:var(--ok)}
@@ -65,17 +66,21 @@ th{font-size:12px;color:var(--muted);font-weight:600}
 td.num{text-align:center;font-variant-numeric:tabular-nums;border-radius:6px}
 .n2{background:var(--neg2)}.n1{background:var(--neg1)}.z{background:var(--neu)}.p1{background:var(--pos1)}.p2{background:var(--pos2)}
 .tablewrap{overflow-x:auto}
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
 .card{border:1px solid var(--line);border-radius:8px;padding:12px;background:var(--bg)}
 .card h4{margin:0 0 6px;font-size:14px}
 .card ul{margin:4px 0 8px;padding-left:18px}
+.rubric{width:100%;font-size:12.5px;margin:6px 0 8px}
+.rubric td{padding:2px 4px;border:0}
+.rubric td:last-child{text-align:right;font-variant-numeric:tabular-nums}
 .quote{font-style:italic;border-left:3px solid var(--accent);padding-left:8px;margin:6px 0}
 .via{font-size:11.5px;color:var(--muted);margin-top:8px}
 .draftview{white-space:pre-wrap;border:1px solid var(--line);border-radius:8px;padding:12px;background:var(--bg);line-height:1.7}
 mark{background:var(--mark);color:inherit;border-radius:3px;padding:0 2px}
 mark.rule{background:var(--mark-rule)}
-.issues li{margin:3px 0}
-.issues .warn{color:var(--warn);font-weight:600}
+.issues li{margin:4px 0}
+.sev{font-weight:700}
+.sev.fix{color:var(--warn)}
 .empty{color:var(--muted);font-size:14px}
 details.result{border:1px solid var(--line);border-radius:var(--radius);padding:10px 14px;margin:12px 0;background:var(--panel)}
 details.result>summary{cursor:pointer;font-weight:600}
@@ -83,7 +88,10 @@ details.result>summary{cursor:pointer;font-weight:600}
 .err{color:var(--warn);font-size:13px}
 .scenario dt{font-weight:600;margin-top:8px}
 .scenario dd{margin:2px 0 0}
-footer{color:var(--muted);font-size:12.5px;padding:8px 0 30px}
+.note{padding:10px 14px;border-radius:var(--radius);background:var(--warn-bg);font-size:13.5px;border:1px solid var(--line);margin:8px 0}
+footer{color:var(--muted);font-size:12.5px;padding:8px 0 30px;border-top:1px solid var(--line);margin-top:8px}
+footer p{margin:6px 0}
+footer a{color:var(--accent)}
 [hidden]{display:none !important}
 </style>
 </head>
@@ -91,27 +99,28 @@ footer{color:var(--muted);font-size:12.5px;padding:8px 0 30px}
 <div class="wrap">
 <header>
   <h1>Stakeholder Reaction Simulator</h1>
-  <p class="sub">Pre-test crisis statements against a simulated stakeholder panel before they go out.</p>
+  <p class="sub">Pre-test crisis communication against a simulated stakeholder panel before it goes out.</p>
 </header>
 
 <div class="tabs" role="tablist">
-  <button class="tab" role="tab" id="tab-scn" aria-controls="pane-scn" aria-selected="true">1. Scenario</button>
-  <button class="tab" role="tab" id="tab-test" aria-controls="pane-test" aria-selected="false">2. Stakeholder test</button>
+  <button class="tab" role="tab" id="tab-scn" aria-controls="pane-scn" aria-selected="true">1. Scenario and panel</button>
+  <button class="tab" role="tab" id="tab-test" aria-controls="pane-test" aria-selected="false">2. Run and results</button>
 </div>
 
-<!-- TAB 1: SCENARIO -->
+<!-- TAB 1: SCENARIO AND PANEL -->
 <section id="pane-scn" role="tabpanel" aria-labelledby="tab-scn">
   <div class="grid2">
     <div class="panel">
       <h2>What this tool does</h2>
-      <p>In a crisis, a statement is judged by several audiences at once, and each reads it differently. This tool runs a draft statement past a simulated panel of employees, customers, journalists, investors and regulators. Each stakeholder reacts in their own voice, points to the exact phrases that trigger them, and says what would change their mind.</p>
-      <p>Alongside the panel, rule checks flag numbers that do not match confirmed facts, mentions of facts that are still unconfirmed or withdrawn, and phrases your team has agreed to avoid. Each persona runs more than once, and where its reactions disagree the result is marked uncertain.</p>
-      <p>It is a pre-mortem aid for the drafting and approval loop. It does not replace real stakeholder research, legal review or human sign-off.</p>
+      <p>In a crisis, one statement is judged by several audiences at once, and each reads it differently. This tool runs your draft statements past a simulated panel of stakeholders, such as employees, customers, journalists, investors and regulators. Each one reacts in their own voice, points to the phrases that trigger them, and says what would most improve their reaction.</p>
+      <p><strong>Scoring.</strong> Every stakeholder starts at -5, the worst takeaway at the start of the crisis. A statement earns up to 2 points each for clarity, transparency, positivity, communal outlook and apologetic framing, so scores run from -5 to +5. A score of 0 means the stakeholder feels neither strongly negative nor positive.</p>
+      <p><strong>Head to head.</strong> With two drafts, each stakeholder also compares them side by side, in random order, and says which better addresses their concerns.</p>
+      <p><strong>Fact check.</strong> Each draft is checked against your fact sheet for factual problems only: figures that contradict confirmed facts, open questions stated as settled, and withdrawn claims repeated. Rounded or approximate figures are noted, not failed. Tone and confident phrasing are left alone unless you list them as phrases to avoid.</p>
       <h3>How it works</h3>
       <ol class="steps">
-        <li><strong>Set the scene on this tab.</strong> Public context, a fact sheet with the status of each fact, phrases to avoid, and one or two drafts.</li>
-        <li><strong>Run the panel on the next tab.</strong> Choose and edit personas, then run the simulation.</li>
-        <li><strong>Read and compare.</strong> Sentiment and trust by stakeholder, flagged phrases in the text, rule-check findings, and a side-by-side comparison of the two drafts. Results export as Markdown or JSON.</li>
+        <li><strong>Set the scene and the panel on this tab.</strong> Public context, fact sheet, phrases to avoid, one or two drafts, and the personas.</li>
+        <li><strong>Run the simulation on the next tab.</strong> Personas run more than once, so you can see how stable each reaction is.</li>
+        <li><strong>Read and compare.</strong> Scores by stakeholder, the head-to-head verdict, fact-check findings, a ranked list of fixes, and each stakeholder's reaction. Results export as Markdown or JSON.</li>
       </ol>
     </div>
 
@@ -130,15 +139,15 @@ footer{color:var(--muted);font-size:12.5px;padding:8px 0 30px}
 
   <div class="panel">
     <h2>Test your own scenario</h2>
-    <p>Everything below is editable. To test a different situation, change these fields, then continue to the stakeholder test:</p>
+    <p>Everything below is editable. To test a different situation, change these fields, then continue to the next tab:</p>
     <ol class="steps">
-      <li><strong>Public context.</strong> Describe only what stakeholders can already see: the news, social posts, reported figures. Keep internal information out, since the personas react as outsiders.</li>
-      <li><strong>Fact sheet.</strong> One fact per line, in the form <code>ID | confirmed, unconfirmed or withdrawn | fact | watch terms</code>. Numbers in confirmed facts are what drafts get checked against. Add watch terms to unconfirmed or withdrawn facts, so any draft that touches them is flagged.</li>
-      <li><strong>Phrases to avoid.</strong> Your team's list, one per line.</li>
+      <li><strong>Public context.</strong> Only what stakeholders can already see: the news, social posts, reported figures. Personas react as outsiders and never see the fact sheet.</li>
+      <li><strong>Fact sheet.</strong> One fact per line, in the form <code>ID | confirmed, unconfirmed or withdrawn | fact</code>. It is used only by the fact check.</li>
+      <li><strong>Phrases to avoid.</strong> Optional. Your team's list, one per line. Leave it empty if your team is comfortable with stock phrases.</li>
       <li><strong>Drafts.</strong> Paste one statement, or two to compare.</li>
-      <li><strong>Personas.</strong> On the next tab, rename and rewrite the personas to match your real audiences, and switch off any you do not need.</li>
+      <li><strong>Personas.</strong> Rewrite them to match the audiences of your crisis, and switch off any you do not need. Personas written for one crisis give misleading results on another.</li>
     </ol>
-    <p class="hint">Use fictional or approved, non-confidential material only. Sample results exist only for the preloaded drafts, so once you edit them, run live.</p>
+    <p class="hint">Use fictional or approved, non-confidential material only. Sample results exist only for the preloaded scenario, so once you edit it, run live.</p>
   </div>
 
   <div class="grid2">
@@ -146,9 +155,9 @@ footer{color:var(--muted);font-size:12.5px;padding:8px 0 30px}
       <label for="context" style="margin-top:0">Public context</label>
       <textarea id="context" style="min-height:120px"></textarea>
       <label for="facts">Fact sheet</label>
-      <p class="hint">ID | confirmed, unconfirmed or withdrawn | fact | watch terms (comma separated)</p>
+      <p class="hint">ID | confirmed, unconfirmed or withdrawn | fact</p>
       <textarea id="facts" class="mono"></textarea>
-      <label for="banned">Phrases to avoid</label>
+      <label for="banned">Phrases to avoid (optional)</label>
       <textarea id="banned" class="mono" style="min-height:100px"></textarea>
     </div>
     <div class="panel">
@@ -156,15 +165,22 @@ footer{color:var(--muted);font-size:12.5px;padding:8px 0 30px}
       <textarea id="draftA" style="min-height:170px"></textarea>
       <label for="draftB">Draft B (optional, for comparison)</label>
       <textarea id="draftB" style="min-height:170px"></textarea>
-      <div class="row" style="margin-top:14px">
-        <button class="ghost" id="reset">Restore sample scenario</button>
-        <button id="next">Next: run the stakeholder test</button>
-      </div>
+      <p class="hint" id="budget"></p>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>Personas</h2>
+    <p class="hint">Tick to include. Open a persona to edit who they are. Describe who they are and what they care about; a grievance written into a description will color every reaction.</p>
+    <div id="personas" class="personas"></div>
+    <div class="row" style="margin-top:14px">
+      <button class="ghost" id="reset">Restore sample scenario</button>
+      <button id="next">Next: run the simulation</button>
     </div>
   </div>
 </section>
 
-<!-- TAB 2: STAKEHOLDER TEST -->
+<!-- TAB 2: RUN AND RESULTS -->
 <section id="pane-test" role="tabpanel" aria-labelledby="tab-test" hidden>
   <div class="grid-run">
     <div>
@@ -189,10 +205,9 @@ footer{color:var(--muted);font-size:12.5px;padding:8px 0 30px}
       </div>
 
       <div class="panel">
-        <h2>Panel</h2>
-        <p class="hint">Tick to include. Open a persona to edit who they are.</p>
-        <div id="personas"></div>
-        <div class="row" style="margin-top:12px">
+        <h2>Run</h2>
+        <p id="runsummary" class="hint"></p>
+        <div class="row" style="margin-top:8px">
           <button id="run">Run simulation</button>
         </div>
         <div id="status"></div>
@@ -201,74 +216,118 @@ footer{color:var(--muted);font-size:12.5px;padding:8px 0 30px}
 
     <div class="panel" id="out">
       <h2>Results</h2>
-      <p class="empty">Run the simulation to see how each stakeholder is likely to react, which phrases trigger them, and how the drafts compare.</p>
+      <p class="empty">Run the simulation to see how each stakeholder is likely to react, which draft they prefer, what the fact check finds, and what to fix first.</p>
     </div>
   </div>
 </section>
 
-<footer>Simulated reactions are advisory. The Northwind scenario is fictional.</footer>
+<footer>
+  <p>Built by <a href="https://www.linkedin.com/in/vashishth-doshi/" target="_blank" rel="noopener">Vashishth Doshi</a> · <a id="issue-link" href="#" target="_blank" rel="noopener">Raise an issue</a></p>
+  <p>Simulated reactions are advisory and do not replace real stakeholder research, legal review or human sign-off. The Northwind scenario is fictional.</p>
+</footer>
 </div>
 
 <script>
 "use strict";
 
-/* ================= SITE CONFIG =================
-   proxyUrl: your deployed proxy (see worker.js). When set, visitors run live
-   on your OpenAI key without entering one. Leave empty for sample mode only.
-   requireCode: true if your proxy has an ACCESS_CODE set. */
+/* ================= SITE CONFIG ================= */
 const CONFIG = {
-  proxyUrl: "",
-  requireCode: false,
-  proxyModel: "gpt-5-mini"
+  /* Your deployed proxy (see worker.js). Leave empty for sample mode and own keys only. */
+  proxyUrl: "https://stakeholder-protector.vashishth-doshi.workers.dev",
+  /* true if the proxy has an ACCESS_CODE set. */
+  requireCode: true,
+  /* Must be listed in the Worker's ALLOWED_MODELS. */
+  proxyModel: "gpt-4.1-mini",
+  /* GitHub repo, used for the "Raise an issue" link. */
+  repoUrl: "https://github.com/vashishthdoshi/stakeholder-response-simulator",
+  /* GoatCounter site code, the part before .goatcounter.com. Leave empty to turn tracking off. */
+  goatcounterCode: ""
 };
-/* ============================================== */
+/* The largest request (one persona comparing both drafts, or the fact check) must stay under this. Matches the proxy. */
+const CHAR_LIMIT = 8000;
+/* =============================================== */
+
+/* Persona and analysis instructions. The live proxy holds its own copy in worker.js; keep both in sync. */
+const RUBRIC = "Score the statement with this rubric. Before reading it, your position is -5: the start of the crisis, with the worst takeaway for someone in your role. 0 means you feel neither strongly negative nor positive about the company or the crisis, as if you were not personally harmed or attached. The statement can earn up to 2 points in each of five categories, judged from your role's perspective: clarity, transparency, positivity, communal outlook and apologetic framing. 0 means absent or harmful, 1 partly present, 2 strongly present. Your sentiment is -5 plus the points earned, so it ranges from -5 to +5.";
+const PROMPTS = {
+  react: "You simulate how one specific stakeholder would react to a company's communication during crises. Stay fully in role. React only to the communication (statement) and the public context; you do not know internal facts. Be realistic and personify your role in the concerns you have. " + RUBRIC + " For concerns and questions, think and reason based on stereotypical traits of your role. Respond with a single JSON object only, no prose, matching exactly: {\"points\": {\"clarity\": 0-2, \"transparency\": 0-2, \"positivity\": 0-2, \"communal_outlook\": 0-2, \"apologetic_framing\": 0-2}, \"top_concerns\": [up to 3 short strings], \"likely_questions\": [up to 3 short strings], \"likely_reaction\": \"one message in your own voice, such as a headline, post, analyst note or internal chat, under 30 words\", \"flagged_phrases\": [{\"phrase\": \"exact substring copied from the statement\", \"why\": \"short reason\"}], \"suggested_revision\": \"one sentence on what would most improve your reaction\"}",
+  compare: "You simulate one specific stakeholder comparing two versions of a company's communication during crises. Stay fully in role. React only to the two versions and the public context; you do not know internal facts. Be realistic and personify your role in the concerns you have. Decide which version better addresses your concerns. Respond with a single JSON object only, no prose, matching exactly: {\"preferred\": \"1\" or \"2\" or \"tie\", \"strength\": integer 0-3 where 0 is a tie, 1 slight, 2 clear and 3 decisive, \"reason\": \"one sentence\"}",
+  factcheck: "You check a company's crisis communication against its internal fact sheet. Each fact is marked confirmed, unconfirmed or withdrawn. List only factual problems in the statement: (1) contradicts_confirmed: a claim or figure that clearly conflicts with a confirmed fact; (2) close_match: a figure that is rounded or approximate but reasonably matches a confirmed fact; (3) unconfirmed_as_settled: an unconfirmed fact stated as settled; (4) repeats_withdrawn: a statement that repeats or relies on a withdrawn claim. Do not flag tone, cliches, confident or emphatic phrasing, opinions, or anything the fact sheet does not cover. Respond with a single JSON object only, no prose, matching exactly: {\"issues\": [{\"quote\": \"exact substring copied from the statement\", \"fact_id\": \"ID from the fact sheet\", \"type\": \"contradicts_confirmed or close_match or unconfirmed_as_settled or repeats_withdrawn\", \"explanation\": \"short\"}]}. Return an empty list if there are no problems.",
+  synthesize: "You consolidate stakeholder feedback on a crisis statement. You are given each stakeholder's suggested revision and top concerns. Group similar suggestions into distinct, actionable fixes. Respond with a single JSON object only, no prose, matching exactly: {\"fixes\": [{\"fix\": \"one sentence\", \"raised_by\": [\"stakeholder names exactly as given\"]}]}"
+};
+
+const CATS = [["clarity","Clarity"],["transparency","Transparency"],["positivity","Positivity"],["communal_outlook","Communal outlook"],["apologetic_framing","Apologetic framing"]];
+const FACT_TYPES = {
+  contradicts_confirmed:{sev:"fix",label:"Fix",text:"Contradicts a confirmed fact"},
+  repeats_withdrawn:{sev:"fix",label:"Fix",text:"Repeats a withdrawn claim"},
+  unconfirmed_as_settled:{sev:"check",label:"Check",text:"States an open question as settled"},
+  close_match:{sev:"note",label:"Note",text:"Approximate match to a confirmed fact"}
+};
 
 const SAMPLE = {
   context: "Northwind Logistics is a national parcel delivery company. News of a data breach surfaced on social media on October 11, before any company statement. A reporter has posted an unconfirmed figure of 50,000 affected customers. Customers are asking online whether their payment details are at risk.",
   facts: [
-    "F1 | confirmed | Unauthorized access to the shipment-tracking database was detected on October 9. |",
-    "F2 | confirmed | Names, email addresses and shipping addresses of about 48,000 customers were exposed. |",
-    "F3 | unconfirmed | Whether payment data was involved is under forensic investigation. | payment, card",
-    "F4 | confirmed | Access was closed on October 10 and an independent forensic firm was engaged. |",
-    "F5 | confirmed | Regulators were notified on October 11. |",
-    "F6 | withdrawn | Only business accounts were affected. | business accounts"
+    "F1 | confirmed | Unauthorized access to the shipment-tracking database was detected on October 9.",
+    "F2 | confirmed | Names, email addresses and shipping addresses of about 48,000 customers were exposed.",
+    "F3 | unconfirmed | Whether payment data was involved is under forensic investigation.",
+    "F4 | confirmed | Access was closed on October 10 and an independent forensic firm was engaged.",
+    "F5 | confirmed | Regulators were notified on October 11.",
+    "F6 | withdrawn | Only business accounts were affected."
   ].join("\n"),
-  banned: ["abundance of caution","we take security seriously","no evidence of misuse","isolated incident","sophisticated attack"].join("\n"),
+  banned: ["abundance of caution","we take security seriously"].join("\n"),
   draftA: "Northwind Logistics recently became aware of an isolated incident involving unauthorized access to one of our systems. Out of an abundance of caution, we are notifying a small number of customers. Fewer than 40,000 customers may have been affected, and no payment information was involved. There is no evidence of misuse of any data. We take security seriously and are working with experts to investigate.",
   draftB: "On October 9, Northwind Logistics detected unauthorized access to our shipment-tracking database. We closed the access on October 10 and engaged an independent forensic firm. The names, email addresses and shipping addresses of about 48,000 customers were exposed. We are still confirming whether payment data was involved and will share an update by October 15. We have notified regulators and are contacting every affected customer directly. We are sorry. Customers can find steps to protect themselves at northwind.example/update."
 };
 
 const PERSONAS = [
-  {id:"employee", name:"Employee", on:true, desc:"A customer support lead who has worked at the company for six years. Hears about the breach from social media before any internal note. Cares about job security, what to tell customers, and whether staff data is affected."},
-  {id:"customer", name:"Customer", on:true, desc:"A regular customer who ships parcels monthly. Not technical. Worried about identity theft and whether a card on file is at risk. Reads the statement on a phone and shares reactions on social media."},
-  {id:"journalist", name:"Journalist", on:true, desc:"A technology reporter at a national outlet with a source claiming 50,000 customers were affected. Looks for inconsistencies, vague language and gaps in the timeline."},
+  {id:"employee", name:"Employee", on:true, desc:"A customer support lead who has worked at the company for six years. Cares about job security, what to tell customers who call in, and whether staff data is affected."},
+  {id:"customer", name:"Customer", on:true, desc:"A regular customer who ships parcels monthly. Not technical. Worried about identity theft and whether a card on file is at risk. Reads statements on a phone and shares reactions on social media."},
+  {id:"journalist", name:"Journalist", on:true, desc:"A technology reporter at a national outlet who has a source claiming 50,000 customers were affected. Looks for inconsistencies, vague language and gaps in the timeline."},
   {id:"investor", name:"Investor", on:true, desc:"An equity analyst covering logistics. Focused on materiality, regulatory exposure, remediation cost and the risk that the scope widens later."},
   {id:"regulator", name:"Regulator", on:true, desc:"A data protection official reviewing the company's notification. Checks whether data categories, scope, timeline and remediation are stated accurately and without unverified assurances."},
   {id:"critic", name:"Online critic", on:false, desc:"A consumer advocate with a large following who frequently criticizes corporate data practices. Quick to frame statements as evasive."}
 ];
 
-/* Sample outputs for the preloaded drafts, two runs per persona. */
+/* Illustrative sample results, hand-written to show the output format. Not a real model run. */
+const P = (c,t,p,co,a)=>({clarity:c,transparency:t,positivity:p,communal_outlook:co,apologetic_framing:a});
 const DEMO = {
-  A: {
-    employee:{runs:[[-3,-3],[-2,-3]],concerns:["Learned details from social media first","Unclear if staff data was affected","No guidance on what to tell customers"],questions:["Was employee data included?","What do we say when customers call?","Who is leading the response?"],reaction:"Internal chat: \"Is this the same breach the reporter posted about? Nobody told us anything.\"",flagged:[{phrase:"We take security seriously",why:"Reads as boilerplate to staff who expect specifics"}],fix:"Give frontline staff approved talking points before or alongside the public statement."},
-    customer:{runs:[[-3,-3],[-2,-3]],concerns:["Was my address exposed?","\"A small number\" feels evasive","No steps to protect myself"],questions:["Am I affected?","Should I change my password?","Is my card at risk?"],reaction:"Post: \"Northwind says a small number of customers. Am I one of them? Zero details.\"",flagged:[{phrase:"a small number of customers",why:"Vague, and contradicts the figure in the next sentence"},{phrase:"no evidence of misuse",why:"Sounds like minimizing; customers hear that nobody has checked"}],fix:"State exactly what data was exposed and give one clear way to check whether you are affected."},
-    journalist:{runs:[[-4,-3],[-2,-4]],concerns:["Figure conflicts with source","Payment data claim stated as settled","Timeline missing"],questions:["When did you first detect the access?","Is payment data definitely excluded?","Why the delay in disclosure?"],reaction:"Headline: \"Northwind downplays breach as figures climb\"",flagged:[{phrase:"Fewer than 40,000 customers",why:"Conflicts with the reported figure and will become the story"},{phrase:"no payment information was involved",why:"Stated as fact while the investigation is ongoing"}],fix:"Use only confirmed numbers, say what is still under investigation, and give a timeline."},
-    investor:{runs:[[-1,-1],[-2,-2]],concerns:["Regulatory exposure unclear","Scope may be restated","Remediation cost"],questions:["Is this material?","Has a disclosure clock started?","What does insurance cover?"],reaction:"Analyst note: \"Messaging is vague; we would expect the scope to widen.\"",flagged:[{phrase:"isolated incident",why:"Premature; creates risk of a later correction"}],fix:"Confirm regulatory notification and the forensic review, and avoid language you may have to retract."},
-    regulator:{runs:[[-3,-2],[-3,-3]],concerns:["Scope stated inconsistently","Data categories not specified","Unverified assurance on payment data"],questions:["Which categories of data were exposed?","When were individuals notified?","What is the basis for the payment data claim?"],reaction:"Follow-up letter requesting the basis for the stated figure and the payment data assurance.",flagged:[{phrase:"no payment information was involved",why:"Assurance given before the investigation concluded"}],fix:"Separate confirmed facts from open questions and reference the notification already made."}
+  react: {
+    A: {
+      employee:{runs:[P(0,0,1,0,0),P(1,0,0,0,0)],concerns:["No guidance on what to tell customers","Unclear if staff data was affected"],questions:["What do we say when customers call?","Was employee data included?"],reaction:"Internal chat: \"Which customers? What do I tell them? This gives us nothing to work with.\"",flagged:[{phrase:"a small number of customers",why:"Support can't answer 'am I affected?' with this"}],fix:"Give frontline staff the confirmed scope and an approved script."},
+      customer:{runs:[P(0,0,0,0,0),P(1,0,0,0,0)],concerns:["Was my address exposed?","Vague scale feels evasive"],questions:["Am I affected?","Is my card at risk?"],reaction:"Post: \"Northwind says a small number of customers. Am I one of them? Zero details.\"",flagged:[{phrase:"no evidence of misuse",why:"Sounds like nobody has checked"}],fix:"Say exactly what data was exposed and how to check whether you are affected."},
+      journalist:{runs:[P(0,0,0,0,0),P(0,0,1,0,0)],concerns:["Figure conflicts with my source","Payment claim stated as settled"],questions:["When did you detect the access?","Is payment data definitely excluded?"],reaction:"Headline: \"Northwind downplays breach as figures climb\"",flagged:[{phrase:"Fewer than 40,000 customers",why:"Conflicts with the reported figure and will become the story"}],fix:"Use confirmed numbers, give a timeline and say what is still under investigation."},
+      investor:{runs:[P(1,0,1,0,0),P(1,0,1,1,0)],concerns:["Scope may be restated","Regulatory exposure unclear"],questions:["Is this material?","Have regulators been notified?"],reaction:"Analyst note: \"Messaging is vague; we would expect the scope to widen.\"",flagged:[{phrase:"isolated incident",why:"Premature; risks a later correction"}],fix:"Confirm regulatory notification and avoid language you may have to retract."},
+      regulator:{runs:[P(0,0,0,0,0),P(0,1,0,0,0)],concerns:["Data categories not specified","Unverified payment assurance"],questions:["Which categories of data were exposed?","What is the basis for the payment claim?"],reaction:"Follow-up letter requesting the basis for the stated figure and the payment assurance.",flagged:[{phrase:"no payment information was involved",why:"Assurance given before the investigation concluded"}],fix:"Separate confirmed facts from open questions."}
+    },
+    B: {
+      employee:{runs:[P(2,2,1,1,1),P(2,1,1,1,1)],concerns:["No internal script yet","Calls before direct contact arrives"],questions:["Is there a script for support teams?","Were employee records in scope?"],reaction:"Internal chat: \"Real numbers and a date. Now we need a script for the phones.\"",flagged:[{phrase:"contacting every affected customer directly",why:"Support will get calls before that contact arrives"}],fix:"Pair the statement with an internal briefing and call script."},
+      customer:{runs:[P(2,2,0,1,2),P(2,2,1,1,1)],concerns:["Payment question open until October 15","No channel for direct contact"],questions:["Should I freeze my card now?","Will you email, call or write?"],reaction:"Post: \"At least they said what was taken and apologized. Checking my bank app until the 15th.\"",flagged:[{phrase:"We are still confirming whether payment data was involved",why:"Honest, but leaves the most urgent question open"}],fix:"Give interim guidance on cards and say how affected customers will be contacted."},
+      journalist:{runs:[P(2,2,1,0,1),P(2,1,1,1,1)],concerns:["Gap between detection and disclosure","Payment data still open"],questions:["Why two days between detection and disclosure?","Who is the forensic firm?"],reaction:"Headline: \"Northwind confirms 48,000 customers exposed, payment data under review\"",flagged:[],fix:"Add the detection-to-disclosure timeline before reporters ask."},
+      investor:{runs:[P(2,2,1,1,0),P(2,2,1,1,1)],concerns:["Remediation cost","Litigation risk"],questions:["What is the expected cost?","Any impact on guidance?"],reaction:"Analyst note: \"Clear, contained messaging; watching the payment data finding.\"",flagged:[],fix:"Follow with an investor note on expected costs once known."},
+      regulator:{runs:[P(2,2,0,1,1),P(2,2,1,1,1)],concerns:["Payment data finding pending"],questions:["When will final scope be confirmed?"],reaction:"Acknowledges the notification and requests an update on payment data scope.",flagged:[],fix:"Confirm the date of the next regulatory update."}
+    }
   },
-  B: {
-    employee:{runs:[[-2,-2],[-1,-1]],concerns:["Still no internal briefing or call script","Customers will call before direct contact arrives"],questions:["Is there a script for support teams?","Were employee records in scope?"],reaction:"Internal chat: \"Better numbers this time, but we still have nothing to say on the phones.\"",flagged:[{phrase:"contacting every affected customer directly",why:"Support will field calls before that contact arrives"}],fix:"Pair the statement with an internal briefing and an approved call script."},
-    customer:{runs:[[-1,-2],[0,-1]],concerns:["Payment question unresolved until October 15","No channel or timing for direct contact"],questions:["Should I freeze my card now?","Will you email, call or write?"],reaction:"Post: \"At least they said what was taken. Still checking my bank app until the 15th.\"",flagged:[{phrase:"We are still confirming whether payment data was involved",why:"Honest, but leaves the most urgent question open"}],fix:"Give interim guidance on cards now, and say how and when affected customers will be contacted."},
-    journalist:{runs:[[-1,0],[1,0]],concerns:["Payment data still open","Gap between detection and disclosure"],questions:["Why two days between detection and disclosure?","Who is the forensic firm?"],reaction:"Headline: \"Northwind confirms 48,000 customers exposed, payment data under review\"",flagged:[],fix:"Add the detection-to-disclosure timeline before reporters ask."},
-    investor:{runs:[[0,0],[0,1]],concerns:["Remediation cost","Litigation risk"],questions:["What is the expected cost?","Any impact on guidance?"],reaction:"Analyst note: \"Clear, contained messaging; watching the payment data finding.\"",flagged:[],fix:"Follow with an investor relations note on expected costs once known."},
-    regulator:{runs:[[0,1],[1,1]],concerns:["Payment data finding pending"],questions:["What is the timeline for confirming final scope?"],reaction:"Acknowledges the notification and requests an update on payment data scope.",flagged:[],fix:"Confirm the date of the next regulatory update."}
+  compare: {
+    employee:[{winner:"B",strength:2,reason:"B gives confirmed numbers and dates I can repeat to customers."},{winner:"B",strength:2,reason:"B is specific enough to work from."}],
+    customer:[{winner:"B",strength:3,reason:"B tells me what was exposed and apologizes."},{winner:"B",strength:2,reason:"B is clearer about what happened to my data."}],
+    journalist:[{winner:"B",strength:3,reason:"B's figure and timeline hold up; A's figure conflicts with my source."},{winner:"B",strength:3,reason:"A reads as downplaying."}],
+    investor:[{winner:"B",strength:2,reason:"B lowers the risk of a later restatement."},{winner:"B",strength:1,reason:"B is more contained, though cost is still open."}],
+    regulator:[{winner:"B",strength:3,reason:"B separates confirmed facts from open questions."},{winner:"B",strength:3,reason:"A gives an unverified assurance on payment data."}]
+  },
+  factcheck: {
+    A:[{quote:"Fewer than 40,000 customers",fact_id:"F2",type:"contradicts_confirmed",explanation:"The confirmed figure is about 48,000."},{quote:"no payment information was involved",fact_id:"F3",type:"unconfirmed_as_settled",explanation:"Payment data is still under forensic investigation."}],
+    B:[]
+  },
+  synth: {
+    A:[{fix:"State the confirmed scope and data types instead of vague terms.",raised_by:["Employee","Customer","Journalist","Regulator"]},{fix:"Separate confirmed facts from what is still under investigation.",raised_by:["Journalist","Investor","Regulator"]}],
+    B:[{fix:"Give support teams a script and interim guidance on payment cards.",raised_by:["Employee","Customer"]},{fix:"Explain the gap between detection and disclosure.",raised_by:["Journalist"]},{fix:"Set dates for the next regulatory and investor updates.",raised_by:["Investor","Regulator"]}]
   }
 };
 
 const PROVIDERS = [
   {id:"proxy", label:"Live, on the site owner's key", hint:"No key needed.", needsKey:false, model:()=>CONFIG.proxyModel, available:()=>!!CONFIG.proxyUrl},
-  {id:"sample", label:"Sample results", hint:"Preloaded drafts only. Rule checks still run on any text.", needsKey:false, model:()=>"", available:()=>true},
-  {id:"openai", label:"My own OpenAI key", hint:"", needsKey:true, model:()=>"gpt-5-mini", available:()=>true},
+  {id:"sample", label:"Sample results", hint:"Illustrative results for the preloaded scenario only. Phrases to avoid are still checked on any text.", needsKey:false, model:()=>"", available:()=>true},
+  {id:"openai", label:"My own OpenAI key", hint:"", needsKey:true, model:()=>"gpt-4.1-mini", available:()=>true},
   {id:"anthropic", label:"My own Anthropic key", hint:"", needsKey:true, model:()=>"claude-sonnet-5-5", available:()=>true}
 ];
 
@@ -284,6 +343,7 @@ function showTab(which){
   const scn=which==="scn";
   $("tab-scn").setAttribute("aria-selected",scn); $("tab-test").setAttribute("aria-selected",!scn);
   $("pane-scn").hidden=!scn; $("pane-test").hidden=scn;
+  if(!scn) updateBudget();
   window.scrollTo({top:0,behavior:"smooth"});
 }
 
@@ -292,6 +352,7 @@ function loadSample(){
   $("context").value=SAMPLE.context; $("facts").value=SAMPLE.facts; $("banned").value=SAMPLE.banned;
   $("draftA").value=SAMPLE.draftA; $("draftB").value=SAMPLE.draftB;
   renderPersonas(PERSONAS.map(p=>({...p})));
+  updateBudget();
 }
 
 function renderProviders(){
@@ -307,12 +368,13 @@ function onProvider(){
   $("codebox").hidden=!(p.id==="proxy"&&CONFIG.requireCode);
   $("model").value=p.model(); $("model").disabled=(p.id==="sample"); $("model").readOnly=(p.id==="proxy");
   $("key").placeholder=p.id==="openai"?"sk-...":"sk-ant-...";
-  checkModel();
+  checkModel(); updateBudget();
 }
 function checkModel(){
   const p=provider(), m=$("model").value.trim().toLowerCase(); let w="";
   if(p.id==="anthropic"&&m&&!m.startsWith("claude"))w="This does not look like a Claude model name, so the Anthropic API will likely reject it.";
   if(p.id==="openai"&&m.startsWith("claude"))w="This looks like a Claude model, but the OpenAI provider is selected.";
+  if((p.id==="openai"||p.id==="proxy")&&/^(gpt-5|o\d)/.test(m))w+=(w?" ":"")+"Reasoning models ignore temperature, so repeat runs will vary less.";
   $("modelwarn").textContent=w;
 }
 
@@ -321,7 +383,8 @@ function renderPersonas(list){
   list.forEach(p=>{
     const d=document.createElement("div"); d.className="persona"; d.dataset.id=p.id;
     d.innerHTML='<div style="display:flex;gap:8px;align-items:flex-start"><input type="checkbox" style="margin-top:5px" '+(p.on?"checked":"")+' aria-label="Include '+esc(p.name)+'"><details style="flex:1"><summary class="pname">'+esc(p.name)+'</summary><label>Name</label><input type="text" value="'+esc(p.name)+'" aria-label="Persona name"><label>Who they are</label><textarea aria-label="Persona description">'+esc(p.desc)+'</textarea></details></div>';
-    d.querySelector("input[type=text]").addEventListener("input",e=>{d.querySelector(".pname").textContent=e.target.value||p.id;});
+    d.querySelector("input[type=text]").addEventListener("input",e=>{d.querySelector(".pname").textContent=e.target.value||p.id; updateBudget();});
+    d.querySelector("input[type=checkbox]").addEventListener("change",updateBudget);
     box.appendChild(d);
   });
 }
@@ -333,36 +396,51 @@ function getPersonas(){
   })).filter(p=>p.on);
 }
 
-/* ---------- rule checks ---------- */
 function parseFacts(text){
   return text.split("\n").map(l=>l.trim()).filter(Boolean).map(l=>{
-    const [id,status,fact,watch]=l.split("|").map(s=>(s||"").trim());
-    return {id,status:(status||"").toLowerCase(),fact:fact||"",watch:(watch||"").split(",").map(s=>s.trim()).filter(Boolean)};
-  });
-}
-const NUM_RX=/\b\d{1,3}(?:,\d{3})+\b|\b\d{4,}\b|\b\d+(?:\.\d+)?%/g;
-function isYear(raw){const v=+raw.replace(/,/g,""); return !raw.includes("%")&&!raw.includes(",")&&v>=1900&&v<=2100;}
-function nums(s){return (s.match(NUM_RX)||[]).filter(n=>!isYear(n)).map(n=>n.replace(/,/g,""));}
-
-function ruleCheck(draft,facts,banned){
-  const issues=[], marks=[];
-  const confirmed=new Set(facts.filter(f=>f.status==="confirmed").flatMap(f=>nums(f.fact)));
-  (draft.match(NUM_RX)||[]).forEach(r=>{ if(isYear(r))return;
-    if(!confirmed.has(r.replace(/,/g,""))){issues.push({level:"warn",text:"Number \""+r+"\" does not match any confirmed fact."}); marks.push(r);} });
-  facts.filter(f=>f.status==="unconfirmed"||f.status==="withdrawn").forEach(f=>f.watch.forEach(w=>{
-    if(new RegExp("\\b"+reRx(w),"i").test(draft))
-      issues.push({level:f.status==="withdrawn"?"warn":"info",text:"Mentions \""+w+"\", which relates to "+f.id+" ("+f.status+": "+f.fact.replace(/\.$/,"")+"). "+(f.status==="withdrawn"?"Remove or correct it.":"Check it is framed as still open.")});
-  }));
-  banned.split("\n").map(s=>s.trim()).filter(Boolean).forEach(b=>{
-    const m=draft.match(new RegExp(reRx(b),"i")); if(m){issues.push({level:"warn",text:"Phrase to avoid: \""+m[0]+"\"."}); marks.push(m[0]);} });
-  return {issues,marks};
+    const parts=l.split("|").map(s=>(s||"").trim());
+    return {id:parts[0]||"",status:(parts[1]||"").toLowerCase(),fact:parts[2]||""};
+  }).filter(f=>f.fact);
 }
 
-function highlight(text,flagged,ruleMarks){
+/* ---------- size limit and call count ---------- */
+function largestRequest(){
+  const ctx=$("context").value.length, a=$("draftA").value.length, b=$("draftB").value.length, facts=$("facts").value.length;
+  const pers=getPersonas(); const longest=pers.reduce((m,p)=>Math.max(m,p.name.length+p.desc.length),0);
+  const react=longest+ctx+Math.max(a,b)+60;
+  const compare=b?longest+ctx+a+b+80:0;
+  const fact=facts+Math.max(a,b)+40;
+  return Math.max(react,compare,fact);
+}
+function callCount(){
+  const pers=getPersonas().length, runs=Math.max(1,Math.min(3,parseInt($("runs").value,10)||1));
+  const drafts=[$("draftA").value.trim(),$("draftB").value.trim()].filter(Boolean).length;
+  const facts=parseFacts($("facts").value).length?drafts:0;
+  return pers*runs*drafts+(drafts===2?pers*runs:0)+facts+drafts;
+}
+function updateBudget(){
+  const n=largestRequest(), over=n>CHAR_LIMIT;
+  $("budget").className="hint"+(over?" warn":"");
+  $("budget").textContent="Largest request: "+n.toLocaleString()+" of "+CHAR_LIMIT.toLocaleString()+" characters. Each request combines the public context, a persona and the drafts (or the fact sheet and one draft)."+(over?" Shorten the context, fact sheet or drafts before running.":"");
+  const pers=getPersonas(), p=provider();
+  $("runsummary").textContent="Panel: "+(pers.length?pers.map(x=>x.name).join(", "):"no personas selected")+". Edit personas on the Scenario tab."+(p.id==="sample"?"":" This run will make "+callCount()+" model calls.");
+  $("run").disabled=over||!pers.length;
+}
+
+/* ---------- phrases to avoid (no model) ---------- */
+function bannedCheck(draft,banned){
+  const list=banned.split("\n").map(s=>s.trim()).filter(Boolean), hits=[];
+  list.forEach(b=>{const m=draft.match(new RegExp(reRx(b),"i")); if(m)hits.push(m[0]);});
+  return {listed:list.length,hits};
+}
+
+/* ---------- highlighting ---------- */
+function trimQuote(s){return String(s||"").trim().replace(/^["'“‘]+|["'”’.,;:!?]+$/g,"");}
+function highlight(text,flagged,redMarks){
   const spans=[];
-  const add=(phrase,cls,title)=>{ if(!phrase)return; const rx=new RegExp(reRx(phrase),"gi"); let m;
+  const add=(phrase,cls,title)=>{ phrase=trimQuote(phrase); if(!phrase)return; const rx=new RegExp(reRx(phrase),"gi"); let m;
     while((m=rx.exec(text))){spans.push({s:m.index,e:m.index+m[0].length,cls,title}); if(!m[0].length)break;} };
-  ruleMarks.forEach(p=>add(p,"rule","Rule check"));
+  redMarks.forEach(r=>add(r.phrase,"rule",r.title));
   flagged.forEach(f=>add(f.phrase,"",f.who+": "+f.why));
   spans.sort((a,b)=>a.s-b.s||b.e-a.e);
   let out="",pos=0;
@@ -371,145 +449,205 @@ function highlight(text,flagged,ruleMarks){
 }
 
 /* ---------- model calls ---------- */
-const SYSTEM = "You simulate how one specific stakeholder would react to a company's crisis statement. Stay fully in role. React only to the statement and the public context; you do not know internal facts. Be realistic, not polite. Respond with a single JSON object only, no prose, matching exactly: {\"sentiment\": integer -5 to 5, \"trust_change\": integer -5 to 5, \"top_concerns\": [up to 3 short strings], \"likely_questions\": [up to 3 short strings], \"likely_reaction\": \"one message in your own voice, such as a headline, post, analyst note or internal chat, under 30 words\", \"flagged_phrases\": [{\"phrase\": \"exact substring copied from the statement\", \"why\": \"short reason\"}], \"suggested_revision\": \"one sentence on what would most improve your reaction\"}";
-
 function parseJSON(t){ const a=t.indexOf("{"), b=t.lastIndexOf("}"); if(a<0||b<0)throw new Error("No JSON in model response"); return JSON.parse(t.slice(a,b+1)); }
 function httpError(status,msg){const e=new Error(msg); e.status=status; return e;}
 async function readErr(r){let m=r.status+""; try{const j=await r.json(); m+=" "+((j.error&&(j.error.message||j.error))||j.message||JSON.stringify(j));}catch(e){} return m;}
-
-/* Same rules the proxy applies, kept here for the own-key option. */
 function openAIBody(model,system,user,temp){
   const reasoning=/^(gpt-5|o\d)/i.test(model);
   const b={model,messages:[{role:"system",content:system},{role:"user",content:user}],response_format:{type:"json_object"}};
-  if(reasoning){b.max_completion_tokens=2500; b.reasoning_effort="low";} else {b.max_tokens=900; b.temperature=temp;}
+  if(reasoning){b.max_completion_tokens=2500; b.reasoning_effort="low";} else {b.max_tokens=1200; b.temperature=temp;}
   return b;
 }
-
-async function callOnce(pid,key,code,model,system,user,temp){
-  if(pid==="proxy"){
-    const r=await fetch(CONFIG.proxyUrl,{method:"POST",headers:{"content-type":"application/json","x-access-code":code||""},body:JSON.stringify({model,system,user,temperature:temp})});
+async function callOnce(c,mode,user,temp){
+  const system=PROMPTS[mode];
+  if(c.pid==="proxy"){
+    const r=await fetch(CONFIG.proxyUrl,{method:"POST",headers:{"content-type":"application/json","x-access-code":c.code||""},body:JSON.stringify({mode,model:c.model,user,temperature:temp})});
     if(!r.ok)throw httpError(r.status,"Proxy error "+await readErr(r));
-    const j=await r.json(); return {data:parseJSON(j.text||""),via:"site proxy (owner's OpenAI key)",model:j.model||model};
+    const j=await r.json(); return {data:parseJSON(j.text||""),via:"site proxy (owner's OpenAI key)",model:j.model||c.model};
   }
-  if(pid==="openai"){
-    const r=await fetch("https://api.openai.com/v1/chat/completions",{method:"POST",headers:{"content-type":"application/json","authorization":"Bearer "+key},body:JSON.stringify(openAIBody(model,system,user,temp))});
+  if(c.pid==="openai"){
+    const r=await fetch("https://api.openai.com/v1/chat/completions",{method:"POST",headers:{"content-type":"application/json","authorization":"Bearer "+c.key},body:JSON.stringify(openAIBody(c.model,system,user,temp))});
     if(!r.ok)throw httpError(r.status,"OpenAI error "+await readErr(r));
-    const j=await r.json(); return {data:parseJSON((j.choices&&j.choices[0]&&j.choices[0].message&&j.choices[0].message.content)||""),via:"api.openai.com (your key)",model:j.model||model};
+    const j=await r.json(); return {data:parseJSON((j.choices&&j.choices[0]&&j.choices[0].message&&j.choices[0].message.content)||""),via:"api.openai.com (your key)",model:j.model||c.model};
   }
-  if(pid==="anthropic"){
-    const r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"content-type":"application/json","x-api-key":key,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},
-      body:JSON.stringify({model,max_tokens:900,temperature:temp,system,messages:[{role:"user",content:user}]})});
+  if(c.pid==="anthropic"){
+    const r=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"content-type":"application/json","x-api-key":c.key,"anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},
+      body:JSON.stringify({model:c.model,max_tokens:1200,temperature:Math.min(1,temp),system,messages:[{role:"user",content:user}]})});
     if(!r.ok)throw httpError(r.status,"Anthropic error "+await readErr(r));
-    const j=await r.json(); return {data:parseJSON((j.content||[]).map(c=>c.text||"").join("")),via:"api.anthropic.com (your key)",model:j.model||model};
+    const j=await r.json(); return {data:parseJSON((j.content||[]).map(x=>x.text||"").join("")),via:"api.anthropic.com (your key)",model:j.model||c.model};
   }
   throw new Error("Unknown provider");
 }
-
-/* Retries rate limits and server errors with backoff. */
-async function callModel(...args){
+async function callModel(c,mode,user,temp){
   for(let a=0;;a++){
-    try{ return await callOnce(...args); }
+    try{ return await callOnce(c,mode,user,temp); }
     catch(e){ const retry=(e.status===429||e.status>=500)&&a<4; if(!retry)throw e; await sleep(1500*Math.pow(2,a)+Math.random()*400); }
   }
 }
+async function pool(tasks,n){ let i=0;
+  await Promise.all(Array.from({length:Math.min(n,tasks.length)},async()=>{ while(i<tasks.length){const k=i++; await tasks[k]();} })); }
 
-async function pool(tasks,n){ const res=new Array(tasks.length); let i=0;
-  await Promise.all(Array.from({length:Math.min(n,tasks.length)},async()=>{ while(i<tasks.length){const k=i++; res[k]=await tasks[k]();} }));
-  return res; }
-
-function demoRuns(k,p,runs){
-  const d=DEMO[k]&&DEMO[k][p.id]; if(!d)return null;
-  return d.runs.slice(0,runs).map(([s,t])=>({data:{sentiment:s,trust_change:t,top_concerns:d.concerns,likely_questions:d.questions,likely_reaction:d.reaction,flagged_phrases:d.flagged,suggested_revision:d.fix},via:"sample data",model:"sample"}));
-}
-
-/* ---------- aggregation ---------- */
-function clamp(v){v=Number(v); return isFinite(v)?Math.max(-5,Math.min(5,Math.round(v))):0;}
+/* ---------- scoring ---------- */
+function pt(v){v=Number(v); return isFinite(v)?Math.max(0,Math.min(2,Math.round(v))):0;}
+function sentimentOf(points){ return -5+CATS.reduce((s,[k])=>s+pt((points||{})[k]),0); }
 function mean(a){return a.length?a.reduce((x,y)=>x+y,0)/a.length:0;}
 function cls(v){return v<=-3?"n2":v<-0.5?"n1":v>=3?"p2":v>0.5?"p1":"z";}
 function fmt(v){return (v>0?"+":"")+v.toFixed(1);}
 function summarize(runs){
   const D=runs.map(r=>r.data);
-  const s=D.map(r=>clamp(r.sentiment)), t=D.map(r=>clamp(r.trust_change));
+  const s=D.map(r=>sentimentOf(r.points));
+  const cat={}; CATS.forEach(([k])=>cat[k]=mean(D.map(r=>pt((r.points||{})[k]))));
   const flagged=[], seen=new Set();
-  D.forEach(r=>(r.flagged_phrases||[]).forEach(f=>{const k=(f.phrase||"").toLowerCase(); if(k&&!seen.has(k)){seen.add(k); flagged.push(f);}}));
+  D.forEach(r=>(r.flagged_phrases||[]).forEach(f=>{const k=trimQuote(f.phrase).toLowerCase(); if(k&&!seen.has(k)){seen.add(k); flagged.push(f);}}));
   const f=D[0]||{};
-  return {sMean:mean(s),sSpread:s.length>1?Math.max(...s)-Math.min(...s):0,tMean:mean(t),flagged,
+  return {sMean:mean(s),sSpread:s.length>1?Math.max(...s)-Math.min(...s):0,cat,flagged,
     concerns:f.top_concerns||[],questions:f.likely_questions||[],reaction:f.likely_reaction||"",fix:f.suggested_revision||"",
     via:[...new Set(runs.map(r=>r.via))].join(", "),model:[...new Set(runs.map(r=>r.model))].join(", ")};
+}
+const STRENGTH=["tie","slight","clear","decisive"];
+function summarizeH2H(list){
+  if(!list.length)return null;
+  const signed=list.map(v=>v.winner==="B"?v.strength:v.winner==="A"?-v.strength:0), m=mean(signed);
+  const winner=Math.abs(m)<0.5?"Tie":(m>0?"B":"A");
+  const agree=list.filter(v=>(winner==="Tie"?v.winner==="tie":v.winner===winner)).length;
+  return {winner,score:m,label:winner==="Tie"?"Tie":"Draft "+winner+", "+STRENGTH[Math.min(3,Math.round(Math.abs(m)))],agree,n:list.length,reason:list[0].reason||""};
 }
 
 /* ---------- run ---------- */
 async function run(){
-  const p=provider(), key=$("key").value.trim(), code=$("code").value.trim(), model=$("model").value.trim();
+  const p=provider();
+  const c={pid:p.id,key:$("key").value.trim(),code:$("code").value.trim(),model:$("model").value.trim()};
   const runs=Math.max(1,Math.min(3,parseInt($("runs").value,10)||1));
-  if(p.needsKey&&!key){$("status").textContent="Add your API key, or choose another connection."; return;}
-  if(p.id==="proxy"&&CONFIG.requireCode&&!code){$("status").textContent="Enter the access code."; return;}
-  if(p.id!=="sample"&&!model){$("status").textContent="Enter a model name."; return;}
-  const personas=getPersonas(); if(!personas.length){$("status").textContent="Select at least one persona."; return;}
+  if(p.needsKey&&!c.key){$("status").textContent="Add your API key, or choose another connection."; return;}
+  if(p.id==="proxy"&&CONFIG.requireCode&&!c.code){$("status").textContent="Enter the access code."; return;}
+  if(p.id!=="sample"&&!c.model){$("status").textContent="Enter a model name."; return;}
+  if(largestRequest()>CHAR_LIMIT){$("status").textContent="The scenario is too long. Shorten it on the Scenario tab."; return;}
+  const personas=getPersonas(); if(!personas.length){$("status").textContent="Select at least one persona on the Scenario tab."; return;}
   const context=$("context").value.trim(), facts=parseFacts($("facts").value), banned=$("banned").value;
   const drafts=[["A",$("draftA").value.trim()],["B",$("draftB").value.trim()]].filter(d=>d[1]);
   if(!drafts.length){$("status").textContent="Add at least one draft on the Scenario tab."; return;}
+  const sample=p.id==="sample";
+  const edited=sample&&(context!==SAMPLE.context||facts.length!==parseFacts(SAMPLE.facts).length||drafts.some(([k,t])=>t!==SAMPLE["draft"+k]));
 
+  track("run-"+p.id+"-"+(drafts.length===2?"two-drafts":"one-draft"));
   $("run").disabled=true;
-  const results={}, tasks=[]; let done=0, failed=0;
-  drafts.forEach(([k,text])=>{ results[k]={text,rules:ruleCheck(text,facts,banned),personas:{}};
-    personas.forEach(per=>{ const slot={persona:per,runs:[],error:null}; results[k].personas[per.id]=slot;
-      if(p.id==="sample"){ const d=demoRuns(k,per,runs); if(d)slot.runs=d; else slot.error="No sample result for this persona. Use a live connection to simulate it."; return; }
-      const user="STAKEHOLDER\n"+per.name+": "+per.desc+"\n\nPUBLIC CONTEXT\n"+context+"\n\nSTATEMENT\n"+text;
-      for(let i=0;i<runs;i++){ const temp=runs===1?0.7:0.5+0.5*(i/(runs-1));
-        tasks.push(async()=>{ try{ slot.runs.push(await callModel(p.id,key,code,model,SYSTEM,user,temp)); }catch(e){ slot.error=e.message; failed++; }
-          done++; $("status").textContent="Simulating "+done+" of "+tasks.length+" reactions..."; }); }
-    });
-  });
+  const R={drafts:{},compare:{},calls:0,failed:0,vias:new Set(),models:new Set()};
+  drafts.forEach(([k,text])=>{R.drafts[k]={text,banned:bannedCheck(text,banned),personas:{},fact:{status:facts.length?"pending":"none",issues:[]},synth:{fixes:[]}};
+    personas.forEach(per=>R.drafts[k].personas[per.id]={persona:per,runs:[],error:null});});
+  if(drafts.length===2)personas.forEach(per=>R.compare[per.id]={persona:per,votes:[],error:null});
+  const note=(r)=>{R.vias.add(r.via); R.models.add(r.model);};
+  const temps=i=>runs===1?0.7:0.5+0.5*(i/(runs-1));
 
-  if(tasks.length){ $("status").textContent="Simulating 0 of "+tasks.length+" reactions..."; await pool(tasks,2); }
-  const edited=p.id==="sample"&&drafts.some(([k,t])=>t!==SAMPLE["draft"+k]);
-  const vias=new Set(), models=new Set();
-  Object.values(results).forEach(R=>Object.values(R.personas).forEach(o=>o.runs.forEach(r=>{vias.add(r.via); models.add(r.model);})));
-  let msg;
-  if(p.id==="sample") msg=edited?"Showing sample reactions written for the original drafts. Rule checks reflect your edits.":"Showing sample reactions.";
-  else msg=(tasks.length-failed)+" of "+tasks.length+" reactions succeeded. Answered via "+([...vias].join(", ")||"none")+(models.size?", model "+[...models].join(", "):"")+".";
-  $("status").textContent=msg;
-  $("run").disabled=false;
-  LAST={when:new Date().toISOString(),connection:p.id,via:[...vias],models:[...models],runs,context,facts,results};
+  if(sample){
+    drafts.forEach(([k])=>{
+      Object.values(R.drafts[k].personas).forEach(o=>{const d=!edited&&DEMO.react[k][o.persona.id];
+        if(d)o.runs=d.runs.slice(0,runs).map(pts=>({data:{points:pts,top_concerns:d.concerns,likely_questions:d.questions,likely_reaction:d.reaction,flagged_phrases:d.flagged,suggested_revision:d.fix},via:"illustrative sample",model:"sample"}));
+        else o.error="No sample result for this persona or scenario. Run live to simulate it.";});
+      if(facts.length){R.drafts[k].fact=edited?{status:"error",issues:[],error:"No sample fact check for an edited scenario."}:{status:"done",issues:DEMO.factcheck[k]};}
+      R.drafts[k].synth={fixes:edited?[]:DEMO.synth[k]};
+    });
+    Object.values(R.compare).forEach(o=>{const d=!edited&&DEMO.compare[o.persona.id]; if(d)o.votes=d.slice(0,runs); else o.error="No sample comparison.";});
+    R.vias.add("illustrative sample");
+  } else {
+    const tasks=[]; let done=0, total=0;
+    const tick=()=>{done++; $("status").textContent="Simulating "+done+" of "+total+" calls...";};
+    drafts.forEach(([k,text])=>personas.forEach(per=>{
+      const user="STAKEHOLDER\n"+per.name+": "+per.desc+"\n\nPUBLIC CONTEXT\n"+context+"\n\nSTATEMENT\n"+text;
+      for(let i=0;i<runs;i++)tasks.push(async()=>{const slot=R.drafts[k].personas[per.id];
+        try{const r=await callModel(c,"react",user,temps(i)); slot.runs.push(r); note(r);}catch(e){slot.error=e.message; R.failed++;} tick();});
+    }));
+    if(drafts.length===2)personas.forEach(per=>{
+      for(let i=0;i<runs;i++)tasks.push(async()=>{const slot=R.compare[per.id]; const swap=Math.random()<0.5;
+        const v1=swap?drafts[1][1]:drafts[0][1], v2=swap?drafts[0][1]:drafts[1][1];
+        const user="STAKEHOLDER\n"+per.name+": "+per.desc+"\n\nPUBLIC CONTEXT\n"+context+"\n\nVERSION 1\n"+v1+"\n\nVERSION 2\n"+v2;
+        try{const r=await callModel(c,"compare",user,temps(i)); note(r);
+          const pref=String(r.data.preferred||"").toLowerCase().trim(); const st=Math.max(0,Math.min(3,Math.round(Number(r.data.strength)||0)));
+          const winner=pref==="1"?(swap?"B":"A"):pref==="2"?(swap?"A":"B"):"tie";
+          slot.votes.push({winner:st===0?"tie":winner,strength:winner==="tie"?0:st,reason:r.data.reason||""});
+        }catch(e){slot.error=e.message; R.failed++;} tick();});
+    });
+    if(facts.length)drafts.forEach(([k,text])=>tasks.push(async()=>{
+      const user="FACT SHEET\n"+facts.map(f=>f.id+" ["+f.status+"] "+f.fact).join("\n")+"\n\nSTATEMENT\n"+text;
+      try{const r=await callModel(c,"factcheck",user,0); note(r); R.drafts[k].fact={status:"done",issues:(r.data.issues||[]).filter(x=>FACT_TYPES[x.type])};}
+      catch(e){R.drafts[k].fact={status:"error",issues:[],error:e.message}; R.failed++;} tick();}));
+    total=tasks.length+drafts.length;
+    $("status").textContent="Simulating 0 of "+total+" calls...";
+    await pool(tasks,2);
+    /* Consolidated fixes, after reactions are in. */
+    await pool(drafts.map(([k])=>async()=>{
+      const names=new Set(), lines=[];
+      Object.values(R.drafts[k].personas).forEach(o=>o.runs.forEach(r=>{names.add(o.persona.name); lines.push("- "+o.persona.name+": "+(r.data.suggested_revision||"")+" | Concerns: "+(r.data.top_concerns||[]).join("; "));}));
+      if(!lines.length){tick(); return;}
+      try{const r=await callModel(c,"synthesize","STAKEHOLDER FEEDBACK\n"+lines.join("\n"),0); note(r);
+        R.drafts[k].synth={fixes:(r.data.fixes||[]).map(f=>({fix:f.fix||"",raised_by:[...new Set((f.raised_by||[]).filter(n=>names.has(n)))]})).filter(f=>f.fix)};}
+      catch(e){R.drafts[k].synth={fixes:[],error:e.message}; R.failed++;} tick();}),2);
+    R.calls=total;
+  }
+
+  $("status").textContent=sample?(edited?"Sample results exist only for the preloaded scenario. Phrases to avoid were checked on your text; run live for everything else.":"Showing illustrative sample results."):(R.calls-R.failed)+" of "+R.calls+" calls succeeded. Answered via "+([...R.vias].join(", ")||"none")+(R.models.size?", model "+[...R.models].join(", "):"")+".";
+  updateBudget();
+  LAST={when:new Date().toISOString(),connection:p.id,via:[...R.vias],models:[...R.models].filter(m=>m!=="sample"),runs,context,facts,phrases_to_avoid:banned.split("\n").map(s=>s.trim()).filter(Boolean),drafts:R.drafts,head_to_head:R.compare};
   render(LAST);
 }
 
 /* ---------- render ---------- */
 function render(L){
-  const keys=Object.keys(L.results); const ids=[...new Set(keys.flatMap(k=>Object.keys(L.results[k].personas)))];
-  keys.forEach(k=>Object.values(L.results[k].personas).forEach(o=>o.sum=o.runs.length?summarize(o.runs):null));
+  const keys=Object.keys(L.drafts); const ids=Object.keys(L.drafts[keys[0]].personas);
+  keys.forEach(k=>Object.values(L.drafts[k].personas).forEach(o=>o.sum=o.runs.length?summarize(o.runs):null));
+  Object.values(L.head_to_head).forEach(o=>o.sum=summarizeH2H(o.votes));
+  const two=keys.length===2;
   let h='<h2>Results</h2>';
-  h+='<p>'+(L.connection==="sample"?'<span class="chip warn">sample data</span>':'<span class="chip ok">live</span>')+L.via.map(v=>'<span class="chip">via '+esc(v)+'</span>').join("")+L.models.filter(m=>m!=="sample").map(m=>'<span class="chip">model '+esc(m)+'</span>').join("")+'</p>';
-  h+='<div class="tablewrap"><table><thead><tr><th>Stakeholder</th>';
-  keys.forEach(k=>h+='<th>Draft '+k+' sentiment</th><th>Draft '+k+' trust</th><th>Spread</th>');
-  if(keys.length===2)h+='<th>B vs A</th>';
-  h+='</tr></thead><tbody>';
-  ids.forEach(id=>{ const name=L.results[keys[0]].personas[id].persona.name; h+='<tr><td>'+esc(name)+'</td>';
-    keys.forEach(k=>{const s=L.results[k].personas[id].sum;
-      if(!s){h+='<td class="num" colspan="3">n/a</td>';return;}
-      h+='<td class="num '+cls(s.sMean)+'">'+fmt(s.sMean)+'</td><td class="num '+cls(s.tMean)+'">'+fmt(s.tMean)+'</td><td class="num">'+s.sSpread+(s.sSpread>=3?' <span class="chip warn">uncertain</span>':'')+'</td>';});
-    if(keys.length===2){const a=L.results.A.personas[id].sum, b=L.results.B.personas[id].sum;
-      h+=(a&&b)?'<td class="num '+cls(b.sMean-a.sMean)+'">'+fmt(b.sMean-a.sMean)+'</td>':'<td class="num">n/a</td>';}
-    h+='</tr>'; });
-  h+='</tbody></table></div><p class="legend">Sentiment and trust run from -5 to +5, averaged across runs. Spread is the gap between the highest and lowest sentiment across runs; 3 or more is marked uncertain.</p>';
+  h+='<p>'+(L.connection==="sample"?'<span class="chip warn">illustrative sample</span>':'<span class="chip ok">live</span>')+L.via.filter(v=>v!=="illustrative sample").map(v=>'<span class="chip">via '+esc(v)+'</span>').join("")+L.models.map(m=>'<span class="chip">model '+esc(m)+'</span>').join("")+'</p>';
 
-  keys.forEach(k=>{ const R=L.results[k]; const flagged=[];
+  h+='<div class="tablewrap"><table><thead><tr><th>Stakeholder</th>';
+  keys.forEach(k=>h+='<th>Draft '+k+' score</th><th>Spread</th>');
+  if(two)h+='<th>B vs A</th><th>Head to head</th>';
+  h+='</tr></thead><tbody>';
+  ids.forEach(id=>{ const name=L.drafts[keys[0]].personas[id].persona.name; h+='<tr><td>'+esc(name)+'</td>';
+    keys.forEach(k=>{const s=L.drafts[k].personas[id].sum;
+      if(!s){h+='<td class="num" colspan="2">n/a</td>';return;}
+      h+='<td class="num '+cls(s.sMean)+'">'+fmt(s.sMean)+'</td><td class="num">'+s.sSpread+(s.sSpread>=3?' <span class="chip warn">panel disagrees</span>':'')+'</td>';});
+    if(two){const a=L.drafts.A.personas[id].sum, b=L.drafts.B.personas[id].sum, hh=L.head_to_head[id]&&L.head_to_head[id].sum;
+      h+=(a&&b)?'<td class="num '+cls(b.sMean-a.sMean)+'">'+fmt(b.sMean-a.sMean)+'</td>':'<td class="num">n/a</td>';
+      h+=hh?'<td>'+esc(hh.label)+' <span class="hint">('+hh.agree+' of '+hh.n+' runs)</span></td>':'<td>n/a</td>';}
+    h+='</tr>'; });
+  h+='</tbody></table></div><p class="legend">Scores run from -5 (worst takeaway at the start of the crisis) to +5, averaged across runs: -5 plus up to 2 points each for clarity, transparency, positivity, communal outlook and apologetic framing. Spread is the gap between the highest and lowest score across runs; 3 or more means the runs disagree.'+(two?' Head to head shows which draft each stakeholder preferred when shown both, in random order.':'')+'</p>';
+
+  if(two){ h+='<details class="result" open><summary>Head to head: why</summary><ul>';
+    ids.forEach(id=>{const o=L.head_to_head[id]; h+='<li><strong>'+esc(o.persona.name)+':</strong> '+(o.sum?esc(o.sum.label)+'. '+esc(o.sum.reason):'<span class="err">'+esc(o.error||"No result.")+'</span>')+'</li>';});
+    h+='</ul></details>'; }
+
+  keys.forEach(k=>{ const R=L.drafts[k]; const flagged=[], red=[];
     Object.values(R.personas).forEach(o=>o.sum&&o.sum.flagged.forEach(f=>flagged.push({...f,who:o.persona.name})));
+    R.fact.issues.forEach(i=>red.push({phrase:i.quote,title:FACT_TYPES[i.type].text+(i.fact_id?" ("+i.fact_id+")":"")+": "+(i.explanation||"")}));
+    R.banned.hits.forEach(b=>red.push({phrase:b,title:"Phrase to avoid"}));
     h+='<details class="result" open><summary>Draft '+k+'</summary>';
-    h+='<h3>Statement, with flagged phrases</h3><div class="draftview">'+highlight(R.text,flagged,R.rules.marks)+'</div>';
-    h+='<p class="legend"><mark>Yellow</mark> flagged by a stakeholder (hover for why). <mark class="rule">Red</mark> flagged by rule checks.</p>';
-    h+='<h3>Rule checks</h3>';
-    h+=R.rules.issues.length?'<ul class="issues">'+R.rules.issues.map(i=>'<li><span class="'+(i.level==="warn"?"warn":"")+'">'+(i.level==="warn"?"Fix":"Check")+':</span> '+esc(i.text)+'</li>').join("")+'</ul>':'<p class="empty">No issues found.</p>';
+    h+='<h3>Statement</h3><div class="draftview">'+highlight(R.text,flagged,red)+'</div>';
+    h+='<p class="legend"><mark>Yellow</mark> flagged by a stakeholder. <mark class="rule">Red</mark> flagged by the fact check or your phrases to avoid. Hover for why.</p>';
+
+    h+='<h3>Fact check</h3>';
+    if(R.fact.status==="none")h+='<p class="empty">No fact sheet entries to check against.</p>';
+    else if(R.fact.status==="error")h+='<p class="err">'+esc(R.fact.error||"Fact check failed.")+'</p>';
+    else if(!R.fact.issues.length)h+='<p class="empty">No factual problems found against the fact sheet.</p>';
+    else h+='<ul class="issues">'+R.fact.issues.map(i=>{const t=FACT_TYPES[i.type]; return '<li><span class="sev '+t.sev+'">'+t.label+':</span> '+esc(t.text)+(i.fact_id?' ('+esc(i.fact_id)+')':'')+'. "'+esc(trimQuote(i.quote))+'" '+esc(i.explanation||"")+'</li>';}).join("")+'</ul>';
+
+    h+='<h3>Phrases to avoid</h3>';
+    h+=!R.banned.listed?'<p class="empty">No phrases listed.</p>':R.banned.hits.length?'<ul class="issues">'+R.banned.hits.map(b=>'<li><span class="sev fix">Fix:</span> "'+esc(b)+'"</li>').join("")+'</ul>':'<p class="empty">None of your listed phrases appear.</p>';
+
+    h+='<h3>What to fix first</h3>';
+    const fixes=[...R.synth.fixes].sort((a,b)=>b.raised_by.length-a.raised_by.length), np=Object.keys(R.personas).length;
+    h+=R.synth.error?'<p class="err">'+esc(R.synth.error)+'</p>':fixes.length?'<ol>'+fixes.map(f=>'<li>'+esc(f.fix)+' <span class="hint">Raised by '+f.raised_by.length+' of '+np+(f.raised_by.length?': '+esc(f.raised_by.join(", ")):"")+'</span></li>').join("")+'</ol>':'<p class="empty">No consolidated fixes.</p>';
+
     h+='<h3>Stakeholder reactions</h3><div class="cards">';
     Object.values(R.personas).forEach(o=>{ h+='<div class="card"><h4>'+esc(o.persona.name)+'</h4>';
       if(!o.sum){h+='<p class="err">'+esc(o.error||"No result.")+'</p></div>';return;}
       const s=o.sum;
-      h+='<span class="chip">sentiment '+fmt(s.sMean)+'</span><span class="chip">trust '+fmt(s.tMean)+'</span>'+(s.sSpread>=3?'<span class="chip warn">panel disagrees</span>':'');
+      h+='<span class="chip">score '+fmt(s.sMean)+'</span>'+(s.sSpread>=3?'<span class="chip warn">panel disagrees</span>':'');
+      h+='<table class="rubric">'+CATS.map(([key,label])=>'<tr><td>'+label+'</td><td>'+s.cat[key].toFixed(1)+' / 2</td></tr>').join("")+'</table>';
       h+='<p class="quote">'+esc(s.reaction)+'</p>';
-      if(s.concerns.length)h+='<strong>Concerns</strong><ul>'+s.concerns.map(c=>'<li>'+esc(c)+'</li>').join("")+'</ul>';
-      if(s.questions.length)h+='<strong>Likely questions</strong><ul>'+s.questions.map(c=>'<li>'+esc(c)+'</li>').join("")+'</ul>';
-      if(s.flagged.length)h+='<strong>Triggers</strong><ul>'+s.flagged.map(f=>'<li>"'+esc(f.phrase)+'": '+esc(f.why)+'</li>').join("")+'</ul>';
+      if(s.concerns.length)h+='<strong>Concerns</strong><ul>'+s.concerns.map(x=>'<li>'+esc(x)+'</li>').join("")+'</ul>';
+      if(s.questions.length)h+='<strong>Likely questions</strong><ul>'+s.questions.map(x=>'<li>'+esc(x)+'</li>').join("")+'</ul>';
+      if(s.flagged.length)h+='<strong>Triggers</strong><ul>'+s.flagged.map(f=>'<li>"'+esc(trimQuote(f.phrase))+'": '+esc(f.why)+'</li>').join("")+'</ul>';
       if(s.fix)h+='<strong>What would help</strong><p style="margin:4px 0 0">'+esc(s.fix)+'</p>';
       if(o.error)h+='<p class="err">Some runs failed: '+esc(o.error)+'</p>';
       h+='<p class="via">'+esc(s.via)+(s.model!=="sample"?' · '+esc(s.model):'')+'</p></div>'; });
@@ -517,32 +655,50 @@ function render(L){
 
   h+='<div class="row" style="margin-top:8px"><button class="ghost" id="dlmd">Download summary (.md)</button><button class="ghost" id="dljson">Download raw results (.json)</button></div>';
   $("out").innerHTML=h;
-  $("dlmd").onclick=()=>download("reaction-simulation.md",toMarkdown(L),"text/markdown");
-  $("dljson").onclick=()=>download("reaction-simulation.json",JSON.stringify(L,(k,v)=>k==="sum"?undefined:v,2),"application/json");
+  $("dlmd").onclick=()=>{track("download-md"); download("reaction-simulation.md",toMarkdown(L),"text/markdown");};
+  $("dljson").onclick=()=>{track("download-json"); download("reaction-simulation.json",JSON.stringify(L,(k,v)=>k==="sum"?undefined:v,2),"application/json");};
 }
 
 function toMarkdown(L){
+  const keys=Object.keys(L.drafts);
   let m="# Stakeholder Reaction Simulation\n\nRun: "+L.when+" | Connection: "+L.connection+" | Via: "+(L.via.join(", ")||"n/a")+" | Model: "+(L.models.join(", ")||"n/a")+" | Runs per persona: "+L.runs+"\n\n> Advisory only. Simulated reactions support, and never replace, real stakeholder research and human sign-off.\n";
-  Object.keys(L.results).forEach(k=>{const R=L.results[k];
-    m+="\n## Draft "+k+"\n\n"+R.text+"\n\n### Rule checks\n"+(R.rules.issues.length?R.rules.issues.map(i=>"- "+(i.level==="warn"?"Fix":"Check")+": "+i.text).join("\n"):"- None")+"\n\n### Reactions\n";
+  if(keys.length===2){ m+="\n## Head to head\n\n"; Object.values(L.head_to_head).forEach(o=>{m+="- **"+o.persona.name+"**: "+(o.sum?o.sum.label+" ("+o.sum.agree+" of "+o.sum.n+" runs). "+o.sum.reason:(o.error||"no result"))+"\n";}); }
+  keys.forEach(k=>{const R=L.drafts[k];
+    m+="\n## Draft "+k+"\n\n"+R.text+"\n\n### Fact check\n"+(R.fact.status==="none"?"- No fact sheet entries to check against.":R.fact.status==="error"?"- "+(R.fact.error||"Fact check failed."):R.fact.issues.length?R.fact.issues.map(i=>"- "+FACT_TYPES[i.type].label+": "+FACT_TYPES[i.type].text+(i.fact_id?" ("+i.fact_id+")":"")+". \""+trimQuote(i.quote)+"\" "+(i.explanation||"")).join("\n"):"- No factual problems found.")+"\n";
+    m+="\n### Phrases to avoid\n"+(!R.banned.listed?"- No phrases listed.":R.banned.hits.length?R.banned.hits.map(b=>"- Fix: \""+b+"\"").join("\n"):"- None of the listed phrases appear.")+"\n";
+    m+="\n### What to fix first\n"+(R.synth.fixes.length?[...R.synth.fixes].sort((a,b)=>b.raised_by.length-a.raised_by.length).map((f,i)=>(i+1)+". "+f.fix+" (raised by "+f.raised_by.join(", ")+")").join("\n"):"- None")+"\n\n### Reactions\n";
     Object.values(R.personas).forEach(o=>{const s=o.sum; if(!s){m+="\n**"+o.persona.name+"**: "+(o.error||"no result")+"\n";return;}
-      m+="\n**"+o.persona.name+"** (sentiment "+fmt(s.sMean)+", trust "+fmt(s.tMean)+", spread "+s.sSpread+")\n\n> "+s.reaction+"\n\n"+
-        (s.flagged.length?"Triggers: "+s.flagged.map(f=>"\""+f.phrase+"\" ("+f.why+")").join("; ")+"\n\n":"")+"What would help: "+s.fix+"\n";});
+      m+="\n**"+o.persona.name+"** (score "+fmt(s.sMean)+", spread "+s.sSpread+"; "+CATS.map(([key,label])=>label+" "+s.cat[key].toFixed(1)).join(", ")+")\n\n> "+s.reaction+"\n\n"+
+        (s.flagged.length?"Triggers: "+s.flagged.map(f=>"\""+trimQuote(f.phrase)+"\" ("+f.why+")").join("; ")+"\n\n":"")+"What would help: "+s.fix+"\n";});
   });
   return m;
 }
 
 function download(name,text,type){ const a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([text],{type})); a.download=name; document.body.appendChild(a); a.click(); setTimeout(()=>{try{URL.revokeObjectURL(a.href);}catch(e){} a.remove();},500); }
 
+/* ---------- footer link and usage tracking ---------- */
+$("issue-link").href=CONFIG.repoUrl.replace(/\/$/,"")+"/issues/new";
+if(CONFIG.goatcounterCode){
+  const gc=document.createElement("script");
+  gc.async=true; gc.src="https://gc.zgo.at/count.js";
+  gc.dataset.goatcounter="https://"+CONFIG.goatcounterCode+".goatcounter.com/count";
+  document.head.appendChild(gc);
+}
+/* Counts an event without sending any scenario text, drafts or results. */
+function track(name){ try{ if(window.goatcounter&&window.goatcounter.count) window.goatcounter.count({path:name,title:name,event:true}); }catch(e){} }
+
 /* ---------- wire up ---------- */
 $("tab-scn").addEventListener("click",()=>showTab("scn"));
-$("tab-test").addEventListener("click",()=>showTab("test"));
-$("next").addEventListener("click",()=>showTab("test"));
+$("tab-test").addEventListener("click",()=>{showTab("test"); track("open-run-tab");});
+$("next").addEventListener("click",()=>{showTab("test"); track("open-run-tab");});
 $("reset").addEventListener("click",loadSample);
 $("run").addEventListener("click",run);
 $("model").addEventListener("input",checkModel);
-loadSample();
+$("runs").addEventListener("input",updateBudget);
+["context","facts","draftA","draftB"].forEach(id=>$(id).addEventListener("input",updateBudget));
+document.addEventListener("input",e=>{if(e.target.closest&&e.target.closest("#personas"))updateBudget();});
 renderProviders();
+loadSample();
 </script>
 </body>
 </html>
