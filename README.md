@@ -1,4 +1,4 @@
-# Stakeholder Reaction Simulator
+# Stakeholder Reaction Simulator; Direction to replicate:
 
 Pre-test crisis statements against a simulated stakeholder panel. The page is a single `index.html`. A small Cloudflare Worker (`worker.js`) lets visitors run live simulations on your OpenAI key without the key ever appearing in the page.
 
