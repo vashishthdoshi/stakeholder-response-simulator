@@ -563,7 +563,9 @@ async function run(){
         try{const r=await callModel(c,"compare",user,temps(i)); note(r);
           const pref=String(r.data.preferred||"").toLowerCase().trim(); const st=Math.max(0,Math.min(3,Math.round(Number(r.data.strength)||0)));
           const winner=pref==="1"?(swap?"B":"A"):pref==="2"?(swap?"A":"B"):"tie";
-          slot.votes.push({winner:st===0?"tie":winner,strength:winner==="tie"?0:st,reason:r.data.reason||""});
+          /* The model saw "Version 1/2" in shuffled order; rename them to the drafts they really were. */
+          const reason=String(r.data.reason||"").replace(/\bversion\s*([12])\b/gi,(m,n)=>"Draft "+((n==="1")!==swap?"A":"B"));
+          slot.votes.push({winner:st===0?"tie":winner,strength:winner==="tie"?0:st,reason});
         }catch(e){slot.error=e.message; R.failed++;} tick();});
     });
     if(facts.length)drafts.forEach(([k,text])=>tasks.push(async()=>{
