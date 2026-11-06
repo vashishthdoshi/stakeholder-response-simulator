@@ -195,7 +195,7 @@ footer a{color:var(--accent)}
         <div id="codebox" hidden>
           <label for="code">Access code</label>
           <input type="password" id="code" autocomplete="off">
-          <p class="hint">Provided by the site owner.</p>
+          <p class="hint">The access code is in the project README.</p>
         </div>
         <div class="row">
           <div><label for="model">Model</label><input type="text" id="model"></div>
@@ -222,7 +222,7 @@ footer a{color:var(--accent)}
 </section>
 
 <footer>
-  <p>Built by <a href="https://www.linkedin.com/in/vashishth-doshi/" target="_blank" rel="noopener">Vashishth Doshi</a> · <a id="issue-link" href="#" target="_blank" rel="noopener">Raise an issue</a></p>
+  <p>Free, public version. <a href="https://www.linkedin.com/in/vashishth-doshi/" target="_blank" rel="noopener">Learn more</a> · Built by <a href="https://www.linkedin.com/in/vashishth-doshi/" target="_blank" rel="noopener">Vashishth Doshi</a> · <a id="issue-link" href="#">Raise an issue</a></p>
   <p>Simulated reactions are advisory and do not replace real stakeholder research, legal review or human sign-off. The Northwind scenario is fictional.</p>
 </footer>
 </div>
@@ -238,10 +238,10 @@ const CONFIG = {
   requireCode: true,
   /* Must be listed in the Worker's ALLOWED_MODELS. */
   proxyModel: "gpt-4.1-mini",
-  /* GitHub repo, used for the "Raise an issue" link. */
-  repoUrl: "https://github.com/vashishthdoshi/stakeholder-response-simulator",
+  /* Where "Raise an issue" sends feedback. */
+  issueEmail: "vashishth.doshi@gmail.com",
   /* GoatCounter site code, the part before .goatcounter.com. Leave empty to turn tracking off. */
-  goatcounterCode: ""
+  goatcounterCode: "vashishthdoshi"
 };
 /* The largest request (one persona comparing both drafts, or the fact check) must stay under this. Matches the proxy. */
 const CHAR_LIMIT = 8000;
@@ -679,7 +679,7 @@ function toMarkdown(L){
 function download(name,text,type){ const a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([text],{type})); a.download=name; document.body.appendChild(a); a.click(); setTimeout(()=>{try{URL.revokeObjectURL(a.href);}catch(e){} a.remove();},500); }
 
 /* ---------- footer link and usage tracking ---------- */
-$("issue-link").href=CONFIG.repoUrl.replace(/\/$/,"")+"/issues/new";
+$("issue-link").href="mailto:"+CONFIG.issueEmail+"?subject="+encodeURIComponent("Stakeholder Reaction Simulator: issue")+"&body="+encodeURIComponent("What happened, or what would you change?\n\n");
 if(CONFIG.goatcounterCode){
   const gc=document.createElement("script");
   gc.async=true; gc.src="https://gc.zgo.at/count.js";
