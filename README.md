@@ -1,57 +1,42 @@
-# Stakeholder Reaction Simulator; Direction to replicate:
+# Stakeholder Reaction Simulator
 
-Pre-test crisis statements against a simulated stakeholder panel. The page is a single `index.html`. A small Cloudflare Worker (`worker.js`) lets visitors run live simulations on your OpenAI key without the key ever appearing in the page.
+During any corporate crises, the comms team works round the clock to present acceptable statements that face the collective wrath of affected users, journalists, internal employees. With data and security breaches more frequent than ever, I figure the comms team needs help.
 
-> Never put an API key in `index.html`. Anything in a public repo or GitHub Pages site can be read by anyone, and OpenAI automatically revokes keys it finds on GitHub.
+This product simulates the reaction of any set of stakeholders in a crisis to specific phrasing, compares statements by sentiments, proof-reads communication against an ‘internal source of truth’ and flags inaccuracies.
 
-## 1. Publish the page (GitHub Pages)
+After feedback-driven iterations, this version provides a comms writer, legal analyst, CMO/ CCO executive a side-by-side view of competing statement drafts, and their simulated reactions per stakeholder.
 
-1. Create a public repository and upload `index.html`.
-2. Go to **Settings > Pages**, choose **Deploy from a branch**, select `main` and `/ (root)`, then save.
-3. Your site will be at `https://<your-username>.github.io/<repo-name>/`.
+This doesn’t replace deep, stakeholder research, but is meant to assist quick iterations in the comms writing teams. You can flex the simulated stakeholders’ characters to represent whoever you want. Are you concerned how your draft will read to a niche influencer? Use this to find out.
 
-At this point the page works in sample mode, and visitors can use their own keys.
+The same approach works for any statement/ communication that several audiences will read differently: product announcements, policy positions, internal change memos/ social media updates.
 
-## 2. Deploy the proxy (Cloudflare Workers, free tier)
+The link below leads to the public, free version of this to test. Use access code `0511`. Please raise an issue to recommend changes, or report flaws.
 
-1. Sign in at dash.cloudflare.com and open **Workers & Pages > Create > Create Worker**.
-2. Name it (for example `reaction-proxy`), click **Deploy**, then **Edit code**. Replace everything with the contents of `worker.js` and deploy again.
-3. Open the Worker's **Settings > Variables and Secrets** and add:
+**Try it:** https://vashishthdoshi.github.io/stakeholder-response-simulator/
 
-| Name | Type | Value |
-|---|---|---|
-| `OPENAI_API_KEY` | Secret | your OpenAI key |
-| `ALLOWED_ORIGINS` | Text | `https://<your-username>.github.io` |
-| `ALLOWED_MODELS` | Text | `gpt-4.1-mini` (optional; first is the default) |
-| `ACCESS_CODE` | Secret | optional; a code you share with people you invite |
-| `MAX_PER_MINUTE` | Text | optional; default `30` |
+## Features
 
-4. Copy the Worker URL, for example `https://reaction-proxy.<you>.workers.dev`.
+- **Simulated stakeholder panel.** Each stakeholder reacts in their own voice, points to the phrases that trigger them, lists the questions they would ask, and says what would most improve their reaction.
+- **Side-by-side comparison.** Paste two drafts. Each stakeholder scores both and also compares them head to head, shown in random order, to say which better addresses their concerns.
+- **Fact check.** Each draft is checked against your fact sheet for figures that contradict confirmed facts, open questions stated as settled, and withdrawn claims repeated. Rounded figures are noted, not failed, and confident phrasing is left alone.
+- **What to fix first.** Suggestions from every stakeholder are merged into one ranked list.
 
-## 3. Connect the page to the proxy
+## How to use it
 
-At the top of the script in `index.html`, set:
+1. **Scenario and panel.** Add the public context, a fact sheet (`ID | confirmed, unconfirmed or withdrawn | fact`), any phrases your team avoids, one or two drafts, and the stakeholders you want on the panel.
+2. **Run.** Enter the access code and run the simulation, or try the preloaded sample scenario without a code. The page shows how many model calls a run will make.
+3. **Read and compare.** Scores by stakeholder, the head-to-head verdict, fact-check findings, the ranked fixes and each stakeholder's reaction. Results export as Markdown or JSON.
 
-```js
-const CONFIG = {
-  proxyUrl: "https://reaction-proxy.<you>.workers.dev",
-  requireCode: false,      // true if you set ACCESS_CODE
-  proxyModel: "gpt-4.1-mini" // must be in ALLOWED_MODELS
-};
-```
+## How scoring works
 
-Commit the change. Visitors will now see **Live, on the site owner's key** as the default connection.
+Every stakeholder starts at -5, the worst takeaway at the start of the crisis. A statement earns up to 2 points each for clarity, transparency, positivity, communal outlook and apologetic framing, so scores run from -5 to +5. Each stakeholder runs more than once; when the runs disagree, the result is marked as uncertain.
 
-## 4. Protect your spending
+## Data
 
-- In the OpenAI dashboard, put this key in its own project and set a monthly **budget limit**.
-- Set an `ACCESS_CODE` if you only want invited people (for example, an interviewer) to use your key.
-- The Worker fixes the simulation instructions on the server, caps request size, limits requests per visitor, and only allows the models you list, so the proxy cannot be used as a general chatbot.
-- The origin check stops other websites from using your proxy, but it does not stop someone calling it directly. The access code and budget limit are what protect you there.
+Live runs send your scenario text to OpenAI through a small proxy. Use fictional or approved, non-confidential material only.
 
-## Notes
+## Feedback
 
-- A run makes one scoring call per persona, draft and run, one head-to-head call per persona and run, and one fact check and one consolidation call per draft. Five personas, two drafts and two runs make 34 calls. The page shows the count before you run.
-- The default model, gpt-4.1-mini, accepts temperature, so repeat runs vary. GPT-5 family models ignore temperature.
-- The page shows which endpoint answered and which model replied, so you can always confirm your key was used.
-- Simulated reactions are advisory. Use fictional or approved, non-confidential material only.
+Raise an issue to recommend changes or report flaws: open a [GitHub issue](https://github.com/vashishthdoshi/stakeholder-response-simulator/issues) or email vashishth.doshi@gmail.com.
+
+Built by [Vashishth Doshi](https://www.linkedin.com/in/vashishth-doshi/).
